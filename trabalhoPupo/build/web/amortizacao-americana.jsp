@@ -10,10 +10,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <title>Amortização Americana</title>
     </head>
-    <body>
+    <%@include file="WEB-INF/jspf/header.jspf"%>
+    <body class="p-3 mb-2 bg-light">
         <h1>Amortização Americana</h1>
+        <hr class="bg-dark">
         <%
             double reais = 0;
             double juros = 0;
@@ -29,13 +33,15 @@
 
         %>
         <form>
-            <label>R$</label>
-            <input type="number" min="0" value="0" name="reais"/><br></br>
-            <label>Juros %</label>
-            <input type="number" min="0" value="0" name="juros"/><br></br>
-            <label>Meses</label>
-            <input type="number" min="1" value="1" name="meses"/><br></br>
-            <input type="submit" name="calculaAmortizacao" value="Calcular">
+            <div class="form-group">
+                <label>R$</label>
+                <input class="form-control" style="max-width:40%;" type="number" min="0" value="0" name="reais"/><br></br>
+                <label>Juros %</label>
+                <input class="form-control" style="max-width:40%;" type="number" min="0" value="0" name="juros"/><br></br>
+                <label>Meses</label>
+                <input class="form-control" style="max-width:40%;" type="number" min="1" value="1" name="meses"/><br></br>
+                <input class="btn btn-danger" type="submit" name="calculaAmortizacao" value="Calcular">
+            </div>
         </form>
         <% } else {
 
@@ -44,8 +50,7 @@
             meses = Integer.parseInt(request.getParameter("meses"));
 
         %>        
-
-        <table border="1">
+        <table border="1" class="table table-dark table-striped" style="margin-top:2%;">
             <tr>
                 <td>Nº Prestação</td>
                 <td>Saldo Devedor R$</td>
@@ -75,7 +80,7 @@
             <%
                 }
             %>
-            
+
             <tr>
                 <td>Total</td>
                 <td></td>
@@ -84,16 +89,16 @@
                 <td><%= formatarReal.format(totalPagar + reais)%></td>
 
             </tr>
-            
-            <h3>Total Juros R$ <%= formatarReal.format(totalPagar)%></h3>
-            <h2>Total a Pagar R$ <%= formatarReal.format(totalPagar + reais)%></h2>
-            
-            <a href="amortizacao-americana.jsp">Preencher Novamente o Formulário</a>
-            
+            <a class="btn btn-warning" href="amortizacao-americana.jsp" style="margin-bottom:1%;">Preencher Novamente o Formulário</a>
+            <h3 class="h3">Total Juros: R$ <%= formatarReal.format(totalPagar)%> | Total a Pagar: R$ <%= formatarReal.format(totalPagar + reais)%></h3>
+
+            <hr class="bg-dark">
             <%
                 }
             %>
-            
+
         </table>
+
     </body>
+    <%@include file="WEB-INF/jspf/footer.jspf"%>
 </html>
