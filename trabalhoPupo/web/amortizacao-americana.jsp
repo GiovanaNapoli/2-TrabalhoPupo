@@ -15,9 +15,8 @@
         <title>Amortização Americana</title>
     </head>
     <%@include file="WEB-INF/jspf/header.jspf"%>
-    <body class="p-3 mb-2 bg-light">
-        <h1>Amortização Americana</h1>
-        <hr class="bg-dark">
+    <body class="bg-light">
+        <h1 class="p-3 mb-2">Amortização Americana</h1>
         <%
             double reais = 0;
             double juros = 0;
@@ -32,7 +31,7 @@
             if (request.getParameter("calculaAmortizacao") == null) {
 
         %>
-        <form>
+        <form class="p-3 mb-2">
             <div class="form-group">
                 <label>R$</label>
                 <input class="form-control" style="max-width:40%;" type="number" min="0" value="0" name="reais"/><br></br>
@@ -49,54 +48,55 @@
             juros = Double.parseDouble(request.getParameter("juros"));
             meses = Integer.parseInt(request.getParameter("meses"));
 
-        %>        
-        <table border="1" class="table table-dark table-striped" style="margin-top:2%;">
-            <tr>
-                <td>Nº Prestação</td>
-                <td>Saldo Devedor R$</td>
-                <td>Amortização R$</td>
-                <td>Juros (% <%= (int) juros%> de R$<%= formatarReal.format(reais)%>)</td>
-                <td>Prestação R$</td>                
-            </tr>
+        %>
+        <table border="1" class="ml-3 table table-dark table-striped">
+            <tbody>
+                <tr>
+                    <td>Nº Prestação</td>
+                    <td>Saldo Devedor R$</td>
+                    <td>Amortização R$</td>
+                    <td>Juros (% <%= (int) juros%> de R$<%= formatarReal.format(reais)%>)</td>
+                    <td>Prestação R$</td>                
+                </tr>
 
-            <%
-                calcularJuros = juros / 100;
+                <%
+                    calcularJuros = juros / 100;
 
-                for (int i = 1; i <= meses; i++) {
+                    for (int i = 1; i <= meses; i++) {
 
-                    valorJuros = reais * calcularJuros;
+                        valorJuros = reais * calcularJuros;
 
-                    totalPagar += valorJuros;
+                        totalPagar += valorJuros;
 
-            %>
-            <tr>
-                <td><%= i%></td>
-                <td><%= (i == meses) ? 0 : formatarReal.format(reais)%></td>
-                <td><%= (i == meses) ? formatarReal.format(reais) : 0%></td>
-                <td><%= formatarReal.format(valorJuros)%></td>
-                <td><%= (i == meses) ? formatarReal.format(totalPagar + valorJuros) : formatarReal.format(valorJuros)%></td>
-            </tr>
+                %>
+                <tr>
+                    <td><%= i%></td>
+                    <td><%= (i == meses) ? 0 : formatarReal.format(reais)%></td>
+                    <td><%= (i == meses) ? formatarReal.format(reais) : 0%></td>
+                    <td><%= formatarReal.format(valorJuros)%></td>
+                    <td><%= (i == meses) ? formatarReal.format(totalPagar + valorJuros) : formatarReal.format(valorJuros)%></td>
+                </tr>
 
+                <%
+                    }
+                %>
+
+                <tr>
+                    <td>Total</td>
+                    <td></td>
+                    <td><%= formatarReal.format(reais)%></td>
+                    <td><%= formatarReal.format(totalPagar)%></td>
+                    <td><%= formatarReal.format(totalPagar + reais)%></td>
+
+                </tr>
+            <a class="btn btn-warning ml-3" href="amortizacao-americana.jsp" style="margin-bottom:1%;">Preencher Novamente o Formulário</a>
+            <h3 class="ml-3 h3">Total Juros: R$ <%= formatarReal.format(totalPagar)%> | Total a Pagar: R$ <%= formatarReal.format(totalPagar + reais)%></h3>
+
+            <hr class="m-3 bg-dark">
             <%
                 }
             %>
-
-            <tr>
-                <td>Total</td>
-                <td></td>
-                <td><%= formatarReal.format(reais)%></td>
-                <td><%= formatarReal.format(totalPagar)%></td>
-                <td><%= formatarReal.format(totalPagar + reais)%></td>
-
-            </tr>
-            <a class="btn btn-warning" href="amortizacao-americana.jsp" style="margin-bottom:1%;">Preencher Novamente o Formulário</a>
-            <h3 class="h3">Total Juros: R$ <%= formatarReal.format(totalPagar)%> | Total a Pagar: R$ <%= formatarReal.format(totalPagar + reais)%></h3>
-
-            <hr class="bg-dark">
-            <%
-                }
-            %>
-
+            </tbody>
         </table>
 
     </body>
