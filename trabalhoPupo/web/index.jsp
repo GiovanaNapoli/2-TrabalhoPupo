@@ -12,6 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%@include file="WEB-INF/jspf/header.jspf"%>
+        <h3><a href="amortizacaoConstante.jsp">Amortização Constante</a></h3>
+        <%@include file="WEB-INF/jspf/footer.jspf"%>
     </body>
 </html>
