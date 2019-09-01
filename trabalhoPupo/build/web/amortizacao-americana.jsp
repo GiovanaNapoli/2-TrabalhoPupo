@@ -33,12 +33,12 @@
         %>
         <form class="p-3 mb-2">
             <div class="form-group">
-                <label>R$</label>
-                <input class="form-control" style="max-width:40%;" type="number" min="0" value="0" name="reais"/><br></br>
-                <label>Juros %</label>
-                <input class="form-control" style="max-width:40%;" type="number" min="0" value="0" name="juros"/><br></br>
+                <label>Saldo Devedor R$:</label>
+                <input class="form-control" style="max-width:40%;" type="text" value="0" name="reais"/><br></br>
+                <label>Taxa de Juros %</label>
+                <input class="form-control" style="max-width:40%;" type="text" value="0" name="juros"/><br></br>
                 <label>Meses</label>
-                <input class="form-control" style="max-width:40%;" type="number" min="1" value="1" name="meses"/><br></br>
+                <input class="form-control" style="max-width:40%;" type="text" value="1" name="meses"/><br></br>
                 <input class="btn btn-danger" type="submit" name="calculaAmortizacao" value="Calcular">
             </div>
         </form>
@@ -49,13 +49,13 @@
             meses = Integer.parseInt(request.getParameter("meses"));
 
         %>
-        <table border="1" class="ml-3 table table-dark table-striped">
+        <table border="1" class="table table-dark table-striped" style="text-align: center;">
             <tbody>
                 <tr>
                     <td>Nº Prestação</td>
                     <td>Saldo Devedor R$</td>
                     <td>Amortização R$</td>
-                    <td>Juros (% <%= (int) juros%> de R$<%= formatarReal.format(reais)%>)</td>
+                    <td>Juros R$</td>
                     <td>Prestação R$</td>                
                 </tr>
 
