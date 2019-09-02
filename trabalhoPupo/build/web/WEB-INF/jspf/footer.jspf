@@ -2,5 +2,5 @@
 <%@ page pageEncoding="UTF-8" %>
 <hr>
 <footer>
-    <p style="text-align: center">2° Projeto - Programação Orientada a Objetos</p>
+    <p style="text-align: center">2° Projeto - Programação Orientada a Objetos &copy; Fatec Praia Grande</p>
 </footer>
